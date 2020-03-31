@@ -1,0 +1,25 @@
+{
+  "name": "guayo-instagram-auto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agomezcampero/guayo-instagram-auto.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agomezcampero/guayo-instagram-auto/issues"
+  },
+  "homepage": "https://github.com/agomezcampero/guayo-instagram-auto#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "imagemagick": "^0.1.3",
+    "request": "^2.88.2"
+  }
+}
