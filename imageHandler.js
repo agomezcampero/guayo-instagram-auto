@@ -70,7 +70,8 @@ const addText = function(discount, color, callback) {
 
 const colors = ["verde", "azul", "negro", "naranjo"];
 
-const generateImages = (imageUrl, discount) => {
+const generateImages = async (imageUrl, discount, callback) => {
+  var itemsProcessed = 0;
   download(imageUrl, "foto.jpeg", function() {
     console.log("downloaded");
     resize(function(err, stdout) {
@@ -83,6 +84,8 @@ const generateImages = (imageUrl, discount) => {
           addText(discount, c, function(err, stdout) {
             if (err) throw err;
             console.log("text added");
+            itemsProcessed++;
+            if (itemsProcessed === 4) callback();
           });
         });
       });
