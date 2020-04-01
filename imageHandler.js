@@ -18,7 +18,7 @@ const resize = function(callback) {
     [
       "foto.jpeg",
       "-resize",
-      "1080x1080",
+      "1080x1080^",
       "-gravity",
       "center",
       "-crop",
