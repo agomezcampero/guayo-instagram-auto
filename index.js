@@ -8,7 +8,7 @@ app.use(compression());
 const { generateImages } = require("./imageHandler");
 const { sendMail } = require("./mailer");
 
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
   console.log(`Listening on port ${port}...`);
 });
@@ -36,3 +36,5 @@ app.post("/", async (req, res) => {
 
   res.send("hello world");
 });
+
+module.exports = server;
