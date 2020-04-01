@@ -27,3 +27,7 @@ Sample POST request
 }
 ```
 
+## Available
+
+Running on Heroku server
+`https://guayo-auto.herokuapp.com/`
