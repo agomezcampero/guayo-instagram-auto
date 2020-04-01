@@ -1,12 +1,20 @@
 const express = require("express");
 const app = express();
 app.use(express.json());
+const helmet = require("helmet");
+app.use(helmet());
+const compression = require("compression");
+app.use(compression());
 const { generateImages } = require("./imageHandler");
 const { sendMail } = require("./mailer");
 
 const port = process.env.port || 3000;
 const server = app.listen(port, () => {
   console.log(`Listening on port ${port}...`);
+});
+
+app.get("/", (req, res) => {
+  res.send("hello vips");
 });
 
 app.post("/", async (req, res) => {
