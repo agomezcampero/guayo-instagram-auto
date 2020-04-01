@@ -110,3 +110,7 @@ foto1080azul.jpg
 foto1080naranjo.jpg
 foto1080negro.jpg
 foto1080verde.jpg
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
