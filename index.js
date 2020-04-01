@@ -14,7 +14,7 @@ app.post('/', async (req, res) => {
   const discount = Math.round(
     100 - 100 * (req.body.promotionPrice / req.body.refPrice),
   );
-  mailInfo = {
+  const mailInfo = {
     to: req.body.to,
     companyName: req.body.companyName,
     productName: req.body.productName,
