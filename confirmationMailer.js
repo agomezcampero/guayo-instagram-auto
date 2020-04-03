@@ -5,8 +5,8 @@ const transport = nodemailer.createTransport({
   port: 465,
   service: 'gmail',
   auth: {
-    user: process.env.EMAIL,
-    pass: process.env.PASSWORD,
+    user: process.env.CONFIRMATION_EMAIL,
+    pass: process.env.CONFIRMATION_PASSWORD,
   },
   debug: false,
   logger: true,
@@ -15,7 +15,7 @@ const transport = nodemailer.createTransport({
 const TEMPLATE = `
 <p>Hola!</p>
 <p>Hemos subido exitosamente tu producto a la plataforma guayo. Puedes ver en este <a href="$PERMALINK$"> LINK </a> la publicación.</p>
-<p>Para mejorar la difusión te recomendamos que subas a tus RR.SS. un post informando que ahora formas parte de la comunidad Guayo. Adjunto van unas gráficas explicativas de la plataforma guayo. Ten toda la libertad de usarlas para comunicarle a tu comunidad lo que estamos haciendo.</p>
+<p>Para mejorar la difusión te recomendamos que subas a tus RR.SS. un post informando que ahora formas parte de la comunidad Guayo. Adjunto van unas gráficas explicativas de la plataforma guayo más unas gráficas de tu producto. Ten toda la libertad de usarlas para comunicarle a tu comunidad lo que estamos haciendo.</p>
 <p>Saludos,</p>
 <p>El equipo guayo</p>
 `;
