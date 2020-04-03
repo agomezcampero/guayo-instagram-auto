@@ -57,7 +57,7 @@ const getMessage = (data) => {
     from: '¡Bienvenido a Guayo!',
     to: data.to,
     subject: '¡Bienvenido a Guayo!',
-    text,
+    html: text,
     attachments: getAttachments(data.productName),
   };
   return message;
