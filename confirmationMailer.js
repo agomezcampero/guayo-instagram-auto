@@ -66,8 +66,6 @@ const getMessage = (data) => {
 const sendConfirmationMail = (data) => {
   return new Promise((resolve, reject) => {
     const message = getMessage(data);
-    console.log(message);
-    console.log('------------------------');
     transport.sendMail(message, (err) => {
       if (err) return reject(err);
       return resolve();
