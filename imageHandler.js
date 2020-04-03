@@ -3,7 +3,6 @@ const request = require('request');
 const im = require('imagemagick');
 
 const download = (uri, filename, callback) => {
-  console.log(filename);
   request.head(uri, () => {
     request(uri)
       .pipe(fs.createWriteStream(filename))
@@ -71,10 +70,8 @@ const colors = ['verde', 'azul', 'negro', 'naranjo'];
 
 const generateImages = (imageUrl, discount) => {
   let itemsProcessed = 0;
-  console.log('aca le estamos');
   return new Promise((resolve, reject) => {
     download(imageUrl, 'foto.jpeg', () => {
-      console.log('dowloadiado');
       resize((downloadError) => {
         if (downloadError) return reject(downloadError);
         colors.forEach((c) => {

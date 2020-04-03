@@ -20,6 +20,7 @@ const TEMPLATE = `
 <p>El equipo guayo</p>
 `;
 
+// eslint-disable-next-line max-lines-per-function
 const getAttachments = (productName) => {
   return [{
     filename: `${productName}verde.jpg`,
@@ -35,27 +36,37 @@ const getAttachments = (productName) => {
   },
   {
     filename: `${productName}azul.jpg`,
-    path: `${__dirname}/foto1080azul.jpg`,
+    path: `${__dirname}/images/foto1080azul.jpg`,
+  },
+  {
+    filename: 'Gráfica explicativa 1.png',
+    path: `${__dirname}/grafica1.png`,
+  },
+  {
+    filename: 'Gráfica explicativa 2.png',
+    path: `${__dirname}/grafica2.png`,
   }];
 };
 
 
-const getMessage = (to, permalink, productName) => {
+const getMessage = (data) => {
+  data = data || {};
   let text = `${TEMPLATE}`;
-  text = text.replace('$PERMALINK$', permalink);
+  text = text.replace('$PERMALINK$', data.permalink);
   const message = {
     from: '¡Bienvenido a Guayo!',
-    to,
+    to: data.to,
     subject: '¡Bienvenido a Guayo!',
     text,
-    attachments: getAttachments(productName),
+    attachments: getAttachments(data.productName),
   };
   return message;
 };
 
-const sendConfirmationMail = (mailInfo) => {
+const sendConfirmationMail = (data) => {
   return new Promise((resolve, reject) => {
-    transport.sendMail(getMessage(mailInfo), (err) => {
+    const message = getMessage(data);
+    transport.sendMail(message, (err) => {
       if (err) return reject(err);
       return resolve();
     });

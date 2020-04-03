@@ -29,18 +29,15 @@ const instagram = (req, res) => {
     productDescription: req.body.productDescription,
     companyDescription: req.body.companyDescription,
   };
-  console.log('vamos a generar');
   sendInstagramMail(req.body.image, discount, mailInfo).then(() => {
     res.send('hello world');
   }).catch((err) => {
-    console.log(err);
     res.status(500).send(err);
   });
 };
 
 const sendInstagramMail = async (image, discount, mailInfo) => {
   await generateImages(image, discount);
-  console.log('image ok');
   await sendMail(mailInfo);
 };
 
