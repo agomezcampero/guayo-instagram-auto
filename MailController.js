@@ -3,6 +3,7 @@ const { sendMail } = require('./mailer');
 const { sendConfirmationMail } = require('./confirmationMailer');
 
 const confirmation = (req, res) => {
+  console.log('vamos en la confirmacion');
   const discount = getDiscount(req.body.promotionPrice, req.body.refPrice);
   const mailInfo = {
     to: req.body.to,
@@ -11,6 +12,7 @@ const confirmation = (req, res) => {
     refPrice: req.body.refPrice,
     permalink: req.body.permalink,
   };
+  console.log({ mailInfo });
   sendConfirmation(req.body.image, discount, mailInfo).then(() => {
     res.send('hello world');
   }).catch((err) => {
@@ -43,6 +45,7 @@ const sendInstagramMail = async (image, discount, mailInfo) => {
 
 const sendConfirmation = async (image, discount, mailInfo) => {
   await generateImages(image, discount);
+  console.log('imagenes generadas');
   await sendConfirmationMail(mailInfo);
 };
 

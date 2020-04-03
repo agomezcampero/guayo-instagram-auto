@@ -36,15 +36,15 @@ const getAttachments = (productName) => {
   },
   {
     filename: `${productName}azul.jpg`,
-    path: `${__dirname}/images/foto1080azul.jpg`,
+    path: `${__dirname}/foto1080azul.jpg`,
   },
   {
     filename: 'Gráfica explicativa 1.png',
-    path: `${__dirname}/grafica1.png`,
+    path: `${__dirname}/images/grafica1.png`,
   },
   {
     filename: 'Gráfica explicativa 2.png',
-    path: `${__dirname}/grafica2.png`,
+    path: `${__dirname}/images/grafica2.png`,
   }];
 };
 
@@ -66,6 +66,8 @@ const getMessage = (data) => {
 const sendConfirmationMail = (data) => {
   return new Promise((resolve, reject) => {
     const message = getMessage(data);
+    console.log(message);
+    console.log('------------------------');
     transport.sendMail(message, (err) => {
       if (err) return reject(err);
       return resolve();

@@ -21,11 +21,10 @@ app.use((req, res, next) => {
 });
 
 app.post('/', async (req, res) => {
-  console.log('vmaos aca');
   MailController.instagram(req, res);
 });
 
-app.post('/confirmationMail', async (req, res) => {
+app.post('/confirmation/mail', async (req, res) => {
   MailController.confirmation(req, res);
 });
 
