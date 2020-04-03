@@ -1,19 +1,23 @@
 
 const express = require('express');
+const { generateImages } = require('./imageHandler');
+const { sendMail } = require('./mailer');
+const helmet = require('helmet');
+const compression = require('compression');
 
 const app = express();
 app.use(express.json());
-const { generateImages } = require('./imageHandler');
-const { sendMail } = require('./mailer');
+app.use(helmet());
+app.use(compression());
 
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 const server = app.listen(port, () => {
   console.log(`Listening on port ${port}...`);
 });
 
 app.post('/', async (req, res) => {
   const discount = Math.round(
-    100 - 100 * (req.body.promotionPrice / req.body.refPrice),
+    100 - (100 * (req.body.promotionPrice / req.body.refPrice)),
   );
   const mailInfo = {
     to: req.body.to,
@@ -36,3 +40,6 @@ app.get('/', (req, res) => {
 });
 
 console.log('TERMINAMOS)');
+
+
+module.exports = server;

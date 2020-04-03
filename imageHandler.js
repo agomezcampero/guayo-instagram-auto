@@ -53,7 +53,7 @@ const addText = function(discount, color, callback) {
       "-pointsize",
       "40",
       "-font",
-      "Tahoma-Bold",
+      "Helvetica-Bold",
       "-fill",
       "white",
       "-weight",
