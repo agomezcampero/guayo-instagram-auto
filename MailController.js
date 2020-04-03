@@ -11,6 +11,8 @@ const confirmation = (req, res) => {
     refPrice: req.body.refPrice,
     permalink: req.body.permalink,
   };
+  console.log('---------------------------------');
+  console.log({ mailInfo });
   sendConfirmation(req.body.image, discount, mailInfo).then(() => {
     res.status(200).send({ message: 'ok' });
   }).catch((err) => {

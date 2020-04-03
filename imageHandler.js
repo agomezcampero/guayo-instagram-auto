@@ -72,14 +72,18 @@ const generateImages = (imageUrl, discount) => {
   let itemsProcessed = 0;
   return new Promise((resolve, reject) => {
     download(imageUrl, 'foto.jpeg', () => {
+      console.log('down');
       resize((downloadError) => {
         if (downloadError) return reject(downloadError);
+        console.log('resize');
         colors.forEach((c) => {
           join(c, (joinError) => {
             if (joinError) return reject(joinError);
+            console.log('UNIDAS');
             addText(discount, c, (textError) => {
               if (textError) return reject(textError);
               itemsProcessed += 1;
+              console.log('texto listo');
               if (itemsProcessed === 4) resolve();
             });
           });
