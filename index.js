@@ -15,6 +15,12 @@ const server = app.listen(port, () => {
   console.log(`Listening on port ${port}...`);
 });
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  next();
+});
+
 app.post('/', async (req, res) => {
   const discount = Math.round(
     100 - (100 * (req.body.promotionPrice / req.body.refPrice)),
