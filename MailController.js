@@ -14,6 +14,7 @@ const confirmation = (req, res) => {
   sendConfirmation(req.body.image, discount, mailInfo).then(() => {
     res.status(200).send({ message: 'ok' });
   }).catch((err) => {
+    console.log(err);
     res.status(500).send(err);
   });
 };
