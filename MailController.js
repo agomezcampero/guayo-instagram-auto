@@ -12,7 +12,7 @@ const confirmation = (req, res) => {
     permalink: req.body.permalink,
   };
   sendConfirmation(req.body.image, discount, mailInfo).then(() => {
-    res.send('hello world');
+    res.status(200).send({ message: 'ok' });
   }).catch((err) => {
     res.status(500).send(err);
   });
@@ -30,7 +30,7 @@ const instagram = (req, res) => {
     companyDescription: req.body.companyDescription,
   };
   sendInstagramMail(req.body.image, discount, mailInfo).then(() => {
-    res.send('hello world');
+    res.status(200).send({ message: 'ok' });
   }).catch((err) => {
     res.status(500).send(err);
   });
