@@ -2,18 +2,16 @@ const fs = require('fs');
 const request = require('request');
 const im = require('imagemagick');
 
-const download = function (uri, filename, callback) {
-  request.head(uri, (err, res, body) => {
-    console.log('content-type:', res.headers['content-type']);
-    console.log('content-length:', res.headers['content-length']);
-
+const download = (uri, filename, callback) => {
+  console.log(filename);
+  request.head(uri, () => {
     request(uri)
       .pipe(fs.createWriteStream(filename))
       .on('close', callback);
   });
 };
 
-const resize = function (callback) {
+const resize = (callback) => {
   im.convert(
     [
       'foto.jpeg',
@@ -30,7 +28,7 @@ const resize = function (callback) {
   );
 };
 
-const join = function (color, callback) {
+const join = (color, callback) => {
   im.convert(
     [
       'foto1080.jpg',
@@ -44,7 +42,8 @@ const join = function (color, callback) {
   );
 };
 
-const addText = function (discount, color, callback) {
+// eslint-disable-next-line max-lines-per-function
+const addText = (discount, color, callback) => {
   im.convert(
     [
       `foto1080${color}.jpg`,
@@ -70,22 +69,22 @@ const addText = function (discount, color, callback) {
 
 const colors = ['verde', 'azul', 'negro', 'naranjo'];
 
-const generateImages = async (imageUrl, discount, callback) => {
+const generateImages = (imageUrl, discount) => {
   let itemsProcessed = 0;
-  download(imageUrl, 'foto.jpeg', () => {
-    console.log('downloaded');
-    resize((err, stdout) => {
-      if (err) throw err;
-      console.log('resized');
-      colors.forEach((c) => {
-        join(c, (err, stdout) => {
-          if (err) throw err;
-          console.log('joined');
-          addText(discount, c, (err, stdout) => {
-            if (err) throw err;
-            console.log('text added');
-            itemsProcessed += 1;
-            if (itemsProcessed === 4) callback();
+  console.log('aca le estamos');
+  return new Promise((resolve, reject) => {
+    download(imageUrl, 'foto.jpeg', () => {
+      console.log('dowloadiado');
+      resize((downloadError) => {
+        if (downloadError) return reject(downloadError);
+        colors.forEach((c) => {
+          join(c, (joinError) => {
+            if (joinError) return reject(joinError);
+            addText(discount, c, (textError) => {
+              if (textError) return reject(textError);
+              itemsProcessed += 1;
+              if (itemsProcessed === 4) resolve();
+            });
           });
         });
       });
